@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pihole-adlists
+  namespace: k8s-pihole
+data:
+  adlists.list: |
+    https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+    https://mirror1.malwaredomains.com/files/justdomains
+    http://sysctl.org/cameleon/hosts
+    https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
+    https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
+    https://hosts-file.net/ad_servers.txt
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pihole-regex
+  namespace: k8s-pihole
+data:
+  regex.list: |
+    ^(.+[-_.])??adse?rv(er?|ice)?s?[0-9]*[-.]
+    ^(.+[-_.])??m?ad[sxv]?[0-9]*[-_.]
+    ^(.+[-_.])??telemetry[-.]
+    ^(.+[-_.])??xn--
+    ^adim(age|g)s?[0-9]*[-_.]
+    ^adtrack(er|ing)?[0-9]*[-.]
+    ^advert(s|is(ing|ements?))?[0-9]*[-_.]
+    ^aff(iliat(es?|ion))?[-.]
+    ^analytics?[-.]
+    ^banners?[-.]
+    ^beacons?[0-9]*[-.]
+    ^count(ers?)?[0-9]*[-.]
+    ^pixels?[-.]
+    ^stat(s|istics)?[0-9]*[-.]
+    ^track(ers?|ing)?[0-9]*[-.]
+    ^traff(ic)?[-.]
+    ^(.*)\.g00\.(.*)
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pihole-custom
+  namespace: k8s-pihole
+data:
+  custom.list: |
+    192.168.0.1 example.internal.domain
+    192.168.0.1 example
+    192.168.0.2 another-example.internal.domain
+    192.168.0.2 another-example
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pihole-env
+  namespace: k8s-pihole
+data:
+  TZ: UTC
+  PIHOLE_DNS_: 9.9.9.11;149.112.112.11
+  WEBPASSWORD: AGoodPasswordForTheWebPortal

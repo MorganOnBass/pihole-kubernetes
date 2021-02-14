@@ -28,4 +28,5 @@ pihole-web-service       LoadBalancer   10.97.171.142    192.168.0.192   80:3020
 192.168.0.1
 [root@kube0 pihole-kubernetes]# dig @192.168.0.192 google.com +short
 216.58.206.110
-[root@kube0 pihole-kubernetes]#```
+[root@kube0 pihole-kubernetes]#
+```
